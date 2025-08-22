@@ -14,7 +14,11 @@ export class SignalingService {
   private eventSubjects = new Map<string, Subject<any>>();
 
   constructor(private http: HttpClient) {
-    this.socket = io(this.signalingUrl, { autoConnect: true });
+    this.socket = io(this.signalingUrl, {
+      autoConnect: true,
+      transports: ['websocket', 'polling'],
+      withCredentials: true
+    });
     this.socket.on('connect', () => {
       console.log('Connected to signaling server:', this.socket.id);
     });
