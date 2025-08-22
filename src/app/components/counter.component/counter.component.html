@@ -1,0 +1,16 @@
+<div class="counter-container">
+  <h2>Counter</h2>
+  <div class="session-input">
+    <input [(ngModel)]="sessionKey" placeholder="Enter Session Key" />
+    <button (click)="joinSession()">Join Session</button>
+  </div>
+  <div *ngIf="lastMessage" class="message-info">Last Message: {{ lastMessage }}</div>
+  <div class="message-input">
+    <input [(ngModel)]="message" placeholder="Message to send" />
+    <button (click)="sendMessage()">Send to Kiosk</button>
+  </div>
+  <div class="debug-logs">
+    <h3>Debug Logs</h3>
+    <pre>{{ debugLogs.join('\n') }}</pre>
+  </div>
+</div>
