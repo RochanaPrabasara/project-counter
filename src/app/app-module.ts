@@ -8,9 +8,6 @@ import { CounterComponent } from './components/counter.component/counter.compone
 import { FormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClient } from '@angular/common/http';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { environment } from '../environment';
 
 @NgModule({
   declarations: [
@@ -27,8 +24,6 @@ import { environment } from '../environment';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
