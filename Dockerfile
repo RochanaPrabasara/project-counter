@@ -2,13 +2,17 @@
 FROM node:latest AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install --network-timeout=100000 --retry=5
 COPY . .
 RUN npm run build --configuration=production
 
-# Stage 2: Serve with nginx
-FROM nginx:alpine
-COPY --from=build /app/dist/frontend-counter/browser /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 81
-CMD ["nginx", "-g", "daemon off;"]
+# Stage 2: Serve with Node.js for SSR
+FROM node:latest
+WORKDIR /app
+COPY --from=build /app/dist/frontend-counter /app/dist/frontend-counter
+COPY package*.json ./
+RUN npm install --production
+COPY . .
+EXPOSE 80
+ENV PORT=80
+CMD ["node", "dist/frontend-counter/server/server.mjs"]
