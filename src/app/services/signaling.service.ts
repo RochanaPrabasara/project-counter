@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { io, Socket } from 'socket.io-client';
-import { environment } from '../../environments/environment';
-
+import {environment} from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
