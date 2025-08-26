@@ -13,6 +13,6 @@ COPY --from=build /app/dist/frontend-counter /app/dist/frontend-counter
 COPY package*.json ./
 RUN npm install --production
 COPY . .
-EXPOSE 80
-ENV PORT=80
+EXPOSE 81
+ENV PORT=81
 CMD ["node", "dist/frontend-counter/server/server.mjs"]
