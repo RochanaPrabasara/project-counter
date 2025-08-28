@@ -19,7 +19,7 @@ export class SignalingService {
       autoConnect: true,
       transports: ['websocket', 'polling'],
       withCredentials: true,
-      reconnection: false
+      reconnection: true
     });
     this.socket.on('connect', () => {
       console.log('Connected to signaling server:', this.socket.id);
